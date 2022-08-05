@@ -1,0 +1,46 @@
+#index {
+  max-width: 800px;
+  margin: 100px auto;
+}
+.eventTitle {
+  font-weight: bold;
+  font-size: 20px;
+}
+#selectMonth {
+  margin: 10px 0 50px;
+  display: flex;
+  gap: 5px;
+}
+.allCheckBox {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 10px;
+}
+.allCheckBox .items {
+}
+
+#calendar {
+  display: flex;
+  gap: 10px;
+}
+.calendarItems thead {
+  background-color: aliceblue;
+}
+.calendarItems h3 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.calendarItems table {
+  border: 1px solid gray;
+}
+.calendarItems td {
+  padding: 5px;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  text-align: center;
+}
+.calendarItems td:last-child {
+  border-right: none;
+}
