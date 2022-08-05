@@ -37,8 +37,62 @@ const endDayCount = endDate.getDate();
 const startDay = startDate.getDay();
 
 /**
+ * APIのデータ選択年月日から年/月のみ抽出
+ * 配列から最初,最後の値を取得
+ * @param {string} apiData API内の選択年月日
+ * @returns 年(20XX)月(01~12)を返す
+ */
+const dataSelectYM = (apiData) => {
+  const arrey = [];
+  apiData.map((value, index) => {
+    const year = value.substr(0, 4);
+    const month = value.substr(5, 2);
+    arrey.push([year, month]);
+  });
+
+  const FirstAndLast = [
+    // arrey配列 最初
+    [arrey[0][0], arrey[0][1]],
+    // arrey配列 最後
+    [arrey[arrey.length - 1][0], arrey[arrey.length - 1][1]],
+  ];
+
+  return FirstAndLast;
+};
+// APIデータから最初と最後の年,月を格納
+const apiYM = dataSelectYM(data.eventDate);
+
+/**
  * TODO: select要素 開始年月日/終了年月日
  */
+const startYear = document.getElementById("startYear");
+const endYear = document.getElementById("endYear");
+const startMonth = document.getElementById("startMonth");
+const endMonth = document.getElementById("endMonth");
+
+// API 選択年
+const firstYYYY = apiYM[0][0];
+const endYYYY = apiYM[1][0];
+
+// API 選択月
+const firstMM = Number(apiYM[0][1]);
+const endMM = Number(apiYM[1][1]);
+
+// 選択年
+const strSelectedYYYY = (startYear.querySelector(
+  `option[value='${firstYYYY}']`
+).selected = true);
+const endSelectedYYYY = (endYear.querySelector(
+  `option[value='${endYYYY}']`
+).selected = true);
+
+// 選択月
+const strSelectedMM = (startMonth.querySelector(
+  `option[value='${firstMM}']`
+).selected = true);
+const endSelectedMM = (endMonth.querySelector(
+  `option[value='${endMM}']`
+).selected = true);
 
 /**
  * TODO: カレンダー作成
