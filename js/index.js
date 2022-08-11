@@ -17,11 +17,11 @@
  */
 const data = {
   eventDate: [
-    "2022-07-01",
-    "2022-08-20",
-    "2022-08-30",
-    "2022-09-10",
-    "2025-01-10",
+    // "2022-07-01",
+    // "2022-08-20",
+    // "2022-08-30",
+    // "2022-09-10",
+    // "2025-01-10",
   ],
 };
 
@@ -88,9 +88,34 @@ const endMonth = document.getElementById("endMonth");
 const firstYYYY = apiYM[0][0];
 const endYYYY = apiYM[1][0];
 
-// API 選択月
-const firstMM = Number(apiYM[0][1]);
-const endMM = Number(apiYM[1][1]);
+// API 選択月 0埋め
+const firstMM = apiYM[0][1].toString().padStart(2, "0");
+const endMM = apiYM[1][1].toString().padStart(2, "0");
+
+console.log(firstMM);
+
+// 年 option要素を生成
+for (let i = 0; i < 10; i++) {
+  const years = [startYear, endYear];
+  years.map((value, index) => {
+    value.insertAdjacentHTML(
+      "beforeend",
+      `<option value="${year + i}">${year + i}年</option>`
+    );
+  });
+}
+// 月 option要素を生成
+for (let i = 1; i <= 12; i++) {
+  const months = [startMonth, endMonth];
+  months.map((value, index) => {
+    const zeropadd = i.toString().padStart(2, "0");
+
+    value.insertAdjacentHTML(
+      "beforeend",
+      `<option value="${zeropadd}">${i}月</option>`
+    );
+  });
+}
 
 // 選択年
 const strSelectedYYYY = (startYear.querySelector(
