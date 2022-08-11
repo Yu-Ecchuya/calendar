@@ -116,69 +116,6 @@ for (let i = 1; i <= 12; i++) {
   });
 }
 
-/**
- * 終了年option要素の挙動
- */
-startYear.onchange = () => {
-  const arrey = [];
-  const endChild = endYear.children;
-  for (let i = 0; i < endChild.length; i++) {
-    arrey.push(endYear.children[i].value);
-  }
-
-  // 開始年の選択した数値よりも小さい数値だけを抽出
-  const up = arrey.filter(function (value) {
-    return value < startYear.value;
-  });
-  // 開始年の選択した数値よりも大きい数値だけを抽出
-  const down = arrey.filter(function (value) {
-    return value >= startYear.value;
-  });
-
-  // 終了年の数値から開始年の数値以下を非活性
-  up.map((value, index) => {
-    endYear.querySelector(`option[value='${value}']`).disabled = true;
-  });
-  // 終了年の数値から開始年の数値以上を活性
-  down.map((value, index) => {
-    endYear.querySelector(`option[value='${value}']`).disabled = false;
-  });
-
-  // 終了年を開始年に合わせる
-  endYear.querySelector(`option[value='${startYear.value}']`).selected = true;
-};
-
-/**
- * 終了月option要素の挙動
- */
-startMonth.onchange = () => {
-  const arrey = [];
-  const endChild = endMonth.children;
-  for (let i = 0; i < endChild.length; i++) {
-    arrey.push(endMonth.children[i].value);
-  }
-
-  // 開始月の選択した数値よりも小さい数値だけを抽出
-  const up = arrey.filter(function (value) {
-    return value < startMonth.value;
-  });
-  // 開始月の選択した数値よりも大きい数値だけを抽出
-  const down = arrey.filter(function (value) {
-    return value >= startMonth.value;
-  });
-  // 終了月の数値から開始年の数値以下を非活性
-  up.map((value, index) => {
-    endMonth.querySelector(`option[value='${value}']`).disabled = true;
-  });
-  // 終了月の数値から開始月の数値以上を活性
-  down.map((value, index) => {
-    endMonth.querySelector(`option[value='${value}']`).disabled = false;
-  });
-
-  // 終了月を開始月に合わせる
-  endMonth.querySelector(`option[value='${startMonth.value}']`).selected = true;
-};
-
 // 選択年
 const strSelectedYYYY = (startYear.querySelector(
   `option[value='${firstYYYY}']`
