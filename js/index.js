@@ -44,11 +44,25 @@ const startDay = startDate.getDay();
  */
 const dataSelectYM = (apiData) => {
   const arrey = [];
-  apiData.map((value, index) => {
-    const year = value.substr(0, 4);
-    const month = value.substr(5, 2);
-    arrey.push([year, month]);
-  });
+  const eventDate = data.eventDate;
+
+  /**
+   * data.eventDate 値が 無or有
+   * 無: デフォルトで3ヶ月分の値を格納
+   * 有: eventDateの値を格納
+   */
+  if (eventDate.length === 0) {
+    for (let i = 0; i <= 2; i++) {
+      // 値が無い場合 デフォルトで今月から3ヶ月分の値を格納
+      arrey.push([year, month + i]);
+    }
+  } else {
+    apiData.map((value, index) => {
+      const yyyy = value.substr(0, 4);
+      const mm = value.substr(5, 2);
+      arrey.push([yyyy, mm]);
+    });
+  }
 
   const FirstAndLast = [
     // arrey配列 最初
